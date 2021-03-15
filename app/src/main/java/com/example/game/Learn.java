@@ -22,16 +22,24 @@ public class Learn extends AppCompatActivity {
         t2=(Button)findViewById(R.id.venus);
         t3=(Button)findViewById(R.id.earth);
         Button[] button={t1,t2,t3};
-        for(i=0;i<button.length;i++)
-        {
-            button[i].setOnClickListener(new View.OnClickListener() {
+        t1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    topicSelected(topics[i],contents[i]);
+                    topicSelected(topics[0],contents[0]);
                 }
             });
-        }
-
+        t2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                topicSelected(topics[1],contents[1]);
+            }
+        });
+        t3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                topicSelected(topics[2],contents[2]);
+            }
+        });
     }
     public void topicSelected(String topic,String content)
     {
