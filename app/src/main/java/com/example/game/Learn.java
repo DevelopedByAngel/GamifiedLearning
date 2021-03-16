@@ -1,6 +1,10 @@
 package com.example.game;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -80,6 +84,23 @@ public class Learn extends AppCompatActivity {
             }
         });
         final TextView headingElement=(TextView)findViewById(R.id.heading);
+        final AlertDialog.Builder alert=new AlertDialog.Builder(Learn.this);
+        alert.setTitle("**Break time**");
+        alert.setMessage("Do you want to play a game?");
+        alert.setCancelable(false);
+        alert.setPositiveButton("Start Game", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Intent intent=new Intent(Learn.this,Game.class);
+                startActivity(intent);
+            }
+        });
+        alert.setNegativeButton("Continue Learning", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -88,7 +109,8 @@ public class Learn extends AppCompatActivity {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                headingElement.setText(headingElement.getText().toString() + "1");
+                                AlertDialog dialog=alert.create();
+                                dialog.show();
                             }
                         });
                         Thread.sleep(10000);
