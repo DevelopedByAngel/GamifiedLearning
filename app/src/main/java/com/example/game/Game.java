@@ -6,12 +6,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class Game extends AppCompatActivity {
 
     Button left,down,up,right;
-    ImageView user;
+    ImageView user,target;
     float x,y;
+    float tx,ty;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +23,10 @@ public class Game extends AppCompatActivity {
         up=(Button)findViewById(R.id.up);
         right=(Button)findViewById(R.id.right);
         user=(ImageView)findViewById(R.id.user);
+        target=(ImageView)findViewById(R.id.target);
+        TextView i=(TextView)findViewById(R.id.i);
+        tx=target.getX();
+        ty=target.getY();
         left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

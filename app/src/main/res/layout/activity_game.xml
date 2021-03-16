@@ -14,10 +14,9 @@
         android:id="@+id/user"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:translationX="360dp"
-        android:translationY="600dp"
         android:src="@drawable/ic_launcher_background"
         android:layout_gravity=""/>
     <ImageView
@@ -38,27 +37,34 @@
             android:id="@+id/left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="<-"
+            android:text="left"
             />
         <Button
             android:id="@+id/down"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="V"
+            android:text="down"
             />
         <Button
             android:id="@+id/up"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="^"
+            android:text="up"
             />
         <Button
             android:id="@+id/right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="->"/>
+            android:text="right"/>
 
 
     </LinearLayout>
-
+<TextView
+    android:id="@+id/i"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintLeft_toLeftOf="parent"
+    android:text=""
+    />
 </androidx.constraintlayout.widget.ConstraintLayout>
