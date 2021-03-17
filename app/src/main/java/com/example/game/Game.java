@@ -53,6 +53,7 @@ public class Game extends AppCompatActivity {
                     user.setTranslationX(user.getTranslationX()-100);
                 }
             }
+            
         });
         up.setOnClickListener(new View.OnClickListener() {
             @Override
