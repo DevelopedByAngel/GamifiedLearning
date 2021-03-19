@@ -2,6 +2,9 @@ package com.example.game;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -15,7 +18,7 @@ import static java.lang.Math.round;
 public class Game extends AppCompatActivity {
 
     Button left,down,up,right;
-    ImageView user,target;
+    ImageView user,target,canvas;
     float tx,ty;
     TextView i;
     @Override
@@ -28,6 +31,7 @@ public class Game extends AppCompatActivity {
         right=(Button)findViewById(R.id.right);
         user=(ImageView)findViewById(R.id.user);
         target=(ImageView)findViewById(R.id.target);
+        canvas=(ImageView)findViewById(R.id.canvas) ;
         i=(TextView)findViewById(R.id.i);
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
@@ -35,6 +39,11 @@ public class Game extends AppCompatActivity {
         final int width = displayMetrics.widthPixels;
         final int tx=(round(width/2+width/4)/100)*100;
         final int ty=(round(height/2+height/4)/100)*100;
+        Bitmap bg=Bitmap.createBitmap(720,1080,Bitmap.Config.ARGB_8888);
+        canvas.setBackgroundDrawable(new BitmapDrawable(bg));
+        canvas.setImageDrawable(null);
+        Canvas c=new Canvas(bg);
+        
         target.setTranslationX(tx);
         target.setTranslationY(ty);
         right.setOnClickListener(new View.OnClickListener() {
