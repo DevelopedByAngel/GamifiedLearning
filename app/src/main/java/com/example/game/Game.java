@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -43,7 +45,22 @@ public class Game extends AppCompatActivity {
         canvas.setBackgroundDrawable(new BitmapDrawable(bg));
         canvas.setImageDrawable(null);
         Canvas c=new Canvas(bg);
-        
+        Paint p=new Paint();
+        p.setColor(Color.BLACK);
+        c.drawLine(100,100,700,100,p);
+        c.drawLine(0,200,300,200,p);
+        c.drawLine(400,100,400,300,p);
+        c.drawLine(600,100,600,400,p);
+        c.drawLine(500,200,500,300,p);
+        c.drawLine(0,300,200,300,p);
+        c.drawLine(200,300,200,500,p);
+        c.drawLine(200,500,100,500,p);
+        c.drawLine(100,500,100,400,p);
+        c.drawLine(300,300,300,600,p);
+        c.drawLine(300,400,500,400,p);
+        c.drawLine(400,500,500,500,p);
+        c.drawLine(500,500,500,700,p);
+        c.drawLine(0,600,400,600,p);
         target.setTranslationX(tx);
         target.setTranslationY(ty);
         right.setOnClickListener(new View.OnClickListener() {
