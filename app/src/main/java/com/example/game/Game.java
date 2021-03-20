@@ -52,7 +52,7 @@ public class Game extends AppCompatActivity {
         c.drawLine(100,100,1000,100,p);
         c.drawLine(0,200,300,200,p);
         c.drawLine(400,100,400,300,p);
-        c.drawLine(600,y,600,400,p);
+        c.drawLine(600,100,600,400,p);
         c.drawLine(500,200,500,300,p);
         c.drawLine(0,300,200,300,p);
         c.drawLine(200,300,200,500,p);
@@ -67,11 +67,16 @@ public class Game extends AppCompatActivity {
         c.drawLine(0,800,500,800,p);
         target.setTranslationX(tx);
         target.setTranslationY(ty);
-        move();
+        move(tx,ty);
     }
     public Boolean pass(float x,float y)
     {
-        float a=x;
+//        float[] pos1={100,0,400,600,500,0,200,200,100,300,300,400,500,0,200,0};
+//        float[] pos2={100,200,100,100,200,300,300,500,500,300,400,500,500,600,700,800};
+//        float[] pos3={1000,300,400,600,500,200,200,100,100,300,500,500,500,400,1000,500};
+//        float[] pos4={100,200,300,400,300,300,500,500,400,600,400,500,700,600,700,800};
+        i.setText(round(x/100)*100);
+        return true;
     }
     public void checkWin()
     {
@@ -80,7 +85,7 @@ public class Game extends AppCompatActivity {
             i.setText(i.getText()+"win");
         }
     }
-    public void move()
+    public void move(final float tx,final float ty)
     {
 
         canvas.setOnTouchListener(new View.OnTouchListener() {
@@ -88,15 +93,18 @@ public class Game extends AppCompatActivity {
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 float x=motionEvent.getX();
                 float y=motionEvent.getY();
-                i.setText(x+"_"+y);
-                if(x>=0 && y>=0)
+                if(x>=0)
                 {
                     user.setTranslationX(motionEvent.getX());
+                    checkWin();
+                }
+                if(y>=0)
+                {
                     user.setTranslationY(motionEvent.getY());
                     checkWin();
-
                 }
-
+//                Boolean a=pass(x,y);
+                i.setText(user.getTranslationX()+"_"+user.getTranslationY()+"_"+(round(x/100))*100);
                 return  true;
             }
         });
