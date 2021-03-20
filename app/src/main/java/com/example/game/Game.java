@@ -64,10 +64,14 @@ public class Game extends AppCompatActivity {
         c.drawLine(500,500,500,700,p);
         c.drawLine(0,600,400,600,p);
         c.drawLine(200,700,1000,700,p);
-        c.drawLine(0,800,700,800,p);
+        c.drawLine(0,800,500,800,p);
         target.setTranslationX(tx);
         target.setTranslationY(ty);
         move();
+    }
+    public Boolean pass(float x,float y)
+    {
+        float a=x;
     }
     public void checkWin()
     {
@@ -82,10 +86,17 @@ public class Game extends AppCompatActivity {
         canvas.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-                i.setText(motionEvent.getX()+"_"+motionEvent.getY());
-                user.setTranslationX(motionEvent.getX());
-                user.setTranslationY(motionEvent.getY());
-                checkWin();
+                float x=motionEvent.getX();
+                float y=motionEvent.getY();
+                i.setText(x+"_"+y);
+                if(x>=0 && y>=0)
+                {
+                    user.setTranslationX(motionEvent.getX());
+                    user.setTranslationY(motionEvent.getY());
+                    checkWin();
+
+                }
+
                 return  true;
             }
         });
