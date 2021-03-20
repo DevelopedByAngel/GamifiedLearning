@@ -24,5 +24,11 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        b3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                i=new Intent(MainActivity.this,Game.class);
+            }
+        });
     }
 }

@@ -9,6 +9,7 @@ import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -21,7 +22,6 @@ public class Game extends AppCompatActivity {
 
     Button left,down,up,right;
     ImageView user,target,canvas;
-    float tx,ty;
     TextView i;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,18 +41,21 @@ public class Game extends AppCompatActivity {
         final int width = displayMetrics.widthPixels;
         final int tx=(round(width/2+width/4)/100)*100;
         final int ty=(round(height/2+height/4)/100)*100;
-        Bitmap bg=Bitmap.createBitmap(720,1080,Bitmap.Config.ARGB_8888);
+        Bitmap bg=Bitmap.createBitmap(tx,ty,Bitmap.Config.ARGB_8888);
+        final int x=tx/10;
+        final int y=ty/10;
         canvas.setBackgroundDrawable(new BitmapDrawable(bg));
         canvas.setImageDrawable(null);
         Canvas c=new Canvas(bg);
         Paint p=new Paint();
         p.setColor(Color.BLACK);
-        c.drawLine(100,100,700,100,p);
-        c.drawLine(0,200,300,200,p);
-        c.drawLine(400,100,400,300,p);
-        c.drawLine(600,100,600,400,p);
-        c.drawLine(500,200,500,300,p);
-        c.drawLine(0,300,200,300,p);
+
+        c.drawLine(x,y,10*x,y,p);
+        c.drawLine(0,2*y,3*x,2*y,p);
+        c.drawLine(4*x,1*y,4*x,3*y,p);
+        c.drawLine(6*x,y,6*x,4*y,p);
+        c.drawLine(5*x,2*y,5*x,3*y,p);
+        c.drawLine(0,3*y,2*x,3*y,p);
         c.drawLine(200,300,200,500,p);
         c.drawLine(200,500,100,500,p);
         c.drawLine(100,500,100,400,p);
@@ -63,14 +66,16 @@ public class Game extends AppCompatActivity {
         c.drawLine(0,600,400,600,p);
         target.setTranslationX(tx);
         target.setTranslationY(ty);
+        move();
         right.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(user.getTranslationX()<tx)
                 {
-                    user.setTranslationX(user.getTranslationX()+100);
+                    user.setTranslationX(user.getTranslationX()+x);
                 }
                 checkWin();
+
             }
         });
 
@@ -79,7 +84,7 @@ public class Game extends AppCompatActivity {
             public void onClick(View view) {
                 if(user.getTranslationX()>0)
                 {
-                    user.setTranslationX(user.getTranslationX()-100);
+                    user.setTranslationX(user.getTranslationX()-x);
                 }
                 checkWin();
             }
@@ -89,7 +94,7 @@ public class Game extends AppCompatActivity {
             public void onClick(View view) {
                 if(user.getTranslationY()>0)
                 {
-                    user.setTranslationY(user.getTranslationY()-100);
+                    user.setTranslationY(user.getTranslationY()-y);
                 }
                 checkWin();
             }
@@ -99,7 +104,7 @@ public class Game extends AppCompatActivity {
             public void onClick(View view) {
                 if(user.getTranslationY()<ty)
                 {
-                    user.setTranslationY(user.getTranslationY()+100);
+                    user.setTranslationY(user.getTranslationY()+y);
                 }
                 checkWin();
             }
@@ -107,9 +112,23 @@ public class Game extends AppCompatActivity {
     }
     public void checkWin()
     {
-        if(user.getTranslationX()==target.getTranslationX() && user.getTranslationY()==target.getTranslationY())
+        if(user.getTranslationX()>=target.getTranslationX() && user.getTranslationY()>=target.getTranslationY())
         {
-            i.setText("win");
+            i.setText(i.getText()+"win");
         }
+    }
+    public void move()
+    {
+
+        canvas.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                i.setText(motionEvent.getX()+"_"+motionEvent.getY());
+                user.setTranslationX(motionEvent.getX());
+                user.setTranslationY(motionEvent.getY());
+                checkWin();
+                return  true;
+            }
+        });
     }
 }
