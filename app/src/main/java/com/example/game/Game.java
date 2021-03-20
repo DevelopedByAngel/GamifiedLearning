@@ -41,7 +41,7 @@ public class Game extends AppCompatActivity {
         final int width = displayMetrics.widthPixels;
         final int tx=(round(width/2+width/4)/100)*100;
         final int ty=(round(height/2+height/4)/100)*100;
-        Bitmap bg=Bitmap.createBitmap(tx,ty,Bitmap.Config.ARGB_8888);
+        Bitmap bg=Bitmap.createBitmap(displayMetrics.widthPixels,displayMetrics.heightPixels,Bitmap.Config.ARGB_8888);
         final int x=tx/10;
         final int y=ty/10;
         canvas.setBackgroundDrawable(new BitmapDrawable(bg));
@@ -50,12 +50,12 @@ public class Game extends AppCompatActivity {
         Paint p=new Paint();
         p.setColor(Color.BLACK);
 
-        c.drawLine(x,y,10*x,y,p);
-        c.drawLine(0,2*y,3*x,2*y,p);
-        c.drawLine(4*x,1*y,4*x,3*y,p);
-        c.drawLine(6*x,y,6*x,4*y,p);
-        c.drawLine(5*x,2*y,5*x,3*y,p);
-        c.drawLine(0,3*y,2*x,3*y,p);
+        c.drawLine(100,100,1000,100,p);
+        c.drawLine(0,200,300,200,p);
+        c.drawLine(400,100,400,300,p);
+        c.drawLine(600,y,600,400,p);
+        c.drawLine(500,200,500,300,p);
+        c.drawLine(0,300,200,300,p);
         c.drawLine(200,300,200,500,p);
         c.drawLine(200,500,100,500,p);
         c.drawLine(100,500,100,400,p);
@@ -67,48 +67,6 @@ public class Game extends AppCompatActivity {
         target.setTranslationX(tx);
         target.setTranslationY(ty);
         move();
-        right.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(user.getTranslationX()<tx)
-                {
-                    user.setTranslationX(user.getTranslationX()+x);
-                }
-                checkWin();
-
-            }
-        });
-
-        left.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(user.getTranslationX()>0)
-                {
-                    user.setTranslationX(user.getTranslationX()-x);
-                }
-                checkWin();
-            }
-        });
-        up.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(user.getTranslationY()>0)
-                {
-                    user.setTranslationY(user.getTranslationY()-y);
-                }
-                checkWin();
-            }
-        });
-        down.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(user.getTranslationY()<ty)
-                {
-                    user.setTranslationY(user.getTranslationY()+y);
-                }
-                checkWin();
-            }
-        });
     }
     public void checkWin()
     {
