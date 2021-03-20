@@ -41,7 +41,7 @@ public class Game extends AppCompatActivity {
         final int width = displayMetrics.widthPixels;
         final int tx=(round(width/2+width/4)/100)*100;
         final int ty=(round(height/2+height/4)/100)*100;
-        Bitmap bg=Bitmap.createBitmap(displayMetrics.widthPixels,displayMetrics.heightPixels,Bitmap.Config.ARGB_8888);
+        Bitmap bg=Bitmap.createBitmap(720,1080, Bitmap.Config.ARGB_8888);
         final int x=tx/10;
         final int y=ty/10;
         canvas.setBackgroundDrawable(new BitmapDrawable(bg));
@@ -49,7 +49,6 @@ public class Game extends AppCompatActivity {
         Canvas c=new Canvas(bg);
         Paint p=new Paint();
         p.setColor(Color.BLACK);
-
         c.drawLine(100,100,1000,100,p);
         c.drawLine(0,200,300,200,p);
         c.drawLine(400,100,400,300,p);
@@ -64,6 +63,8 @@ public class Game extends AppCompatActivity {
         c.drawLine(400,500,500,500,p);
         c.drawLine(500,500,500,700,p);
         c.drawLine(0,600,400,600,p);
+        c.drawLine(200,700,1000,700,p);
+        c.drawLine(0,800,700,800,p);
         target.setTranslationX(tx);
         target.setTranslationY(ty);
         move();
